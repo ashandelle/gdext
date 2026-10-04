@@ -67,6 +67,7 @@ pub struct Vector4i {
 impl Vector4i {
     impl_vector_consts!(i32);
     impl_integer_vector_consts!();
+    impl_vector4x_consts!(i32);
 }
 
 impl_vector_fns!(Vector4i, glam::IVec4, i32, (x, y, z, w));

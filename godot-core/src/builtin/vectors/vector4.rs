@@ -68,6 +68,7 @@ pub struct Vector4 {
 impl Vector4 {
     impl_vector_consts!(real);
     impl_float_vector_consts!();
+    impl_vector4x_consts!(real);
 }
 
 impl_vector_fns!(Vector4, RVec4, real, (x, y, z, w));

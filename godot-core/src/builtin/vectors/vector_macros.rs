@@ -330,6 +330,38 @@ macro_rules! impl_vector3x_consts {
     };
 }
 
+/// Implements constants present on 4D vectors.
+macro_rules! impl_vector4x_consts {
+    (
+        // Type of target component, for example `real`.
+        $Scalar:ty
+    ) => {
+        /// Unit vector in -X direction. Can be interpreted as left in an untransformed 4D world.
+        pub const LEFT: Self = Self::new(-1 as $Scalar, 0 as $Scalar, 0 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in +X direction. Can be interpreted as right in an untransformed 4D world.
+        pub const RIGHT: Self = Self::new(1 as $Scalar, 0 as $Scalar, 0 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in +Y direction. Typically interpreted as up in a 4D world.
+        pub const UP: Self = Self::new(0 as $Scalar, 1 as $Scalar, 0 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in -Y direction. Typically interpreted as down in a 4D world.
+        pub const DOWN: Self = Self::new(0 as $Scalar, -1 as $Scalar, 0 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in -Z direction. Can be interpreted as “into the screen” in an untransformed 4D world.
+        pub const FORWARD: Self = Self::new(0 as $Scalar, 0 as $Scalar, -1 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in +Z direction. Can be interpreted as “out of the screen” in an untransformed 4D world.
+        pub const BACK: Self = Self::new(0 as $Scalar, 0 as $Scalar, 1 as $Scalar, 0 as $Scalar);
+
+        /// Unit vector in +W direction. Can be interpreted as ana in an untransformed 4D world.
+        pub const ANA: Self = Self::new(0 as $Scalar, 0 as $Scalar, 0 as $Scalar, 1 as $Scalar);
+
+        /// Unit vector in -W direction. Can be interpreted as kata in an untransformed 4D world.
+        pub const KATA: Self = Self::new(0 as $Scalar, 0 as $Scalar, 0 as $Scalar, -1 as $Scalar);
+    };
+}
+
 macro_rules! shared_vector_docs {
     () => {
         "Conversions are provided via various `from_*` and `to_*` functions, not via the `From` trait. This encourages `new()` as the main \
