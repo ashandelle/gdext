@@ -79,6 +79,24 @@ impl Projection {
         Self { cols: [x, y, z, w] }
     }
 
+    /// Unstable, used to simplify codegen. Too many parameters for public API and easy to have off-by-one, `from_cols()` is preferred.
+    #[doc(hidden)]
+    #[rustfmt::skip]
+    #[allow(clippy::too_many_arguments)]
+    pub const fn __internal_codegen(
+        ax: real, ay: real, az: real, aw: real,
+        bx: real, by: real, bz: real, bw: real,
+        cx: real, cy: real, cz: real, cw: real,
+        ox: real, oy: real, oz: real, ow: real
+    ) -> Self {
+        Self::from_cols(
+            Vector4::new(ax, ay, az, aw),
+            Vector4::new(bx, by, bz, bw),
+            Vector4::new(cx, cy, cz, cw),
+            Vector4::new(ox, oy, oz, ow),
+        )
+    }
+
     /// Creates a new Projection that projects positions from a depth range of
     /// -1 to 1 to one that ranges from 0 to 1, and flips the projected
     /// positions vertically, according to flip_y.

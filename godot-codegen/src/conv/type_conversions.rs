@@ -115,6 +115,8 @@ fn to_hardcoded_rust_enum(ty: &str) -> Option<Ident> {
         "enum::Vector2i.Axis" => "Vector2Axis",
         "enum::Vector3.Axis" => "Vector3Axis",
         "enum::Vector3i.Axis" => "Vector3Axis",
+        "enum::Vector4.Axis" => "Vector4Axis",
+        "enum::Vector4i.Axis" => "Vector4Axis",
         _ => return None,
     };
 
@@ -521,9 +523,10 @@ fn to_rust_expr_inner(expr: &str, ty: &RustTy, is_inner: bool) -> TokenStream {
             "RID" => ("Rid", "default"),
             "Rect2" => ("Rect2", "from_components"),
             "Rect2i" => ("Rect2i", "from_components"),
-            "Vector2" | "Vector2i" | "Vector3" | "Vector3i" => (godot_ty, "new"),
+            "Vector2" | "Vector2i" | "Vector3" | "Vector3i" | "Vector4" | "Vector4i" => (godot_ty, "new"),
             "Transform2D" => ("Transform2D", "__internal_codegen"),
             "Transform3D" => ("Transform3D", "__internal_codegen"),
+            "Projection" => ("Projection", "__internal_codegen"),
             "Color" => {
                 if wrapped.chars().filter(|&c| c == ',').count() == 2 {
                     ("Color", "from_rgb")
