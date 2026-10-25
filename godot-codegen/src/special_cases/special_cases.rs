@@ -789,22 +789,6 @@ pub fn is_class_method_const(class_name: &TyName, godot_method: &JsonClassMethod
 
         // Node3D: creates interpolation pump on first call.
         | ("Node3D", "get_global_transform_interpolated")
-
-        | ("Node4D", "get_rotation")
-        | ("Node4D", "get_rotation_bind")
-        | ("Node4D", "get_rotation_euler_bind")
-        | ("Node4D", "get_rotation_degrees")
-        | ("Node4D", "get_rotation_degrees_bind")
-        | ("Node4D", "get_rotation_degrees_euler_bind")
-        | ("Node4D", "get_scale")
-        
-        | ("Node4D", "get_global_rotation")
-        | ("Node4D", "get_global_rotation_bind")
-        | ("Node4D", "get_global_rotation_euler_bind")
-        | ("Node4D", "get_global_rotation_degrees")
-        | ("Node4D", "get_global_rotation_degrees_bind")
-        | ("Node4D", "get_global_rotation_degrees_euler_bind")
-        | ("Node4D", "get_global_scale")
         => Some(false),
 
         // Heuristic: many Godot getters are not const-qualified despite being pure reads. Override get_*/is_*/has_* methods to const.
